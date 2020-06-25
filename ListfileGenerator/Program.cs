@@ -10,17 +10,17 @@ namespace ListfileGenerator
     {
         static void Main(string[] args)
         {
-            // if (args.Length < 1)
-            //     throw new Exception("You need to input directory");
-            // 
-            // var directoryName = args[0];
-            // if (!Directory.Exists(directoryName))
-            //     throw new Exception($"{directoryName} does not exist");
+            if (args.Length < 1)
+                throw new Exception("You need to input directory");
+            
+            var directoryName = args[0];
+            if (!Directory.Exists(directoryName))
+                throw new Exception($"{directoryName} does not exist");
 
             Console.WriteLine("Preparing listfile...");
             Listfile.Prepare();
 
-            foreach (var file in Directory.GetFiles("MaxIsSpecial", "*.*", SearchOption.AllDirectories))
+            foreach (var file in Directory.GetFiles(directoryName, "*.*", SearchOption.AllDirectories))
             {
                 FileReader.Process(file);
             }
